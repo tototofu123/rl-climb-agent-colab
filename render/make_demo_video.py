@@ -12,7 +12,9 @@ encoded with ffmpeg.
 """
 
 import argparse
+import glob
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -141,14 +143,21 @@ def main():
         label = f"{args.difficulty} problem (route seed {args.route_seed})"
     env.task_label = label
 
-    venv = None
-    stats = args.model.replace(".zip", "_stats.pkl")
-    if os.path.exists(stats):
+    # Training wraps the env in VecNormalize; predicting on raw observations
+    # starves the policy (it hovers). Frozen stats ship beside the model as
+    # <stem>_final_stats.pkl or <stem>_*stats.pkl (checkpoint naming).
+    stem = args.model[:-len(".zip")] if args.model.endswith(".zip") else args.model
+    stem = re.sub(r"_\d+_steps$", "", stem)
+    cands = [stem + "_final_stats.pkl"] + sorted(glob.glob(stem + "_*stats.pkl"))
+    stats = next((c for c in cands if os.path.exists(c)), None)
+    if stats:
         venv = VecNormalize.load(stats, DummyVecEnv([lambda: env]))
         venv.training = False
         venv.norm_reward = False
         model = PPO.load(args.model, env=venv, device="cpu")
     else:
+        print(f"WARNING: no VecNormalize stats for {args.model} — "
+              "predicting raw observations (policy will hover)")
         model = PPO.load(args.model, env=env, device="cpu")
 
     print(f"searching for real {args.episode_count} topping episode(s) of "

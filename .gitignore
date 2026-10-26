@@ -11,3 +11,6 @@ experiments/demo/climb_frame_check.png
 experiments/frames_v2/
 experiments/frames_*/
 experiments/render_*.png
+
+# local agent config
+.omp/mcp.json
