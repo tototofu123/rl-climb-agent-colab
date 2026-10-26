@@ -13,4 +13,5 @@ experiments/frames_*/
 experiments/render_*.png
 
 # local agent config
-.omp/mcp.json
+.omp/
+colab_train.ipynb
