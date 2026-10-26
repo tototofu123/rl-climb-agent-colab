@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+agents/*.zip
+experiments/logs/
+*.pkl
+
+# regenerable artifacts (rerun the pipeline to produce them)
+experiments/demo/checks/
+experiments/demo/climb_frame_check.png
+experiments/frames_v2/
+experiments/frames_*/
+experiments/render_*.png

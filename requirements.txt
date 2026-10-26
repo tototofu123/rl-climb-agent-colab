@@ -1,0 +1,6 @@
+gymnasium>=0.29
+numpy<2
+pygame>=2.5
+# box2d-py  # uncomment for Box2D in later stages
+# stable-baselines3  # uncomment for Stage 2+
+# tensorboard  # uncomment for Stage 2+

@@ -1,0 +1,36 @@
+{
+  "_provenance": {
+    "source": "Vision-model analysis of HKUST boulder wall photos (front view boulderwall.png 2048x1681, side view side wall.png 283x1928), cross-checked with HOLD_SPEC_v12.json hold types and boxSize distribution. Performed 2026-10-24.",
+    "wall_facts": {
+      "overhang_deg": 0,
+      "note": "Wall is vertical (0-5 deg measured in side view). Simulator models it as exactly 0 deg per spec.",
+      "main_wall_width_m": 5.05,
+      "wall_height_m": 4.58,
+      "side_walls": "Grid columns 0 and 5 are perpendicular side walls folding toward the climber (inside corners / arete), widths ~0.54 m and ~0.39 m."
+    },
+    "vision_estimates": {
+      "volumes": "15-25 cm protrusion, faces angled 30-45 deg",
+      "large_jugs": "8-15 cm",
+      "medium_holds": "5-8 cm",
+      "small_crimps": "2-4 cm",
+      "pinches": "3-4 cm depth",
+      "grip_openings": "face outward/upward from the wall surface"
+    }
+  },
+  "types": {
+    "volume":    { "depth_m": 0.18, "cone_half_angle_deg": 60, "out_of_plane_tilt_deg": 30, "f_max_hand_N": 600, "f_max_foot_N": 1200 },
+    "jug":       { "depth_m": 0.10, "cone_half_angle_deg": 55, "out_of_plane_tilt_deg": 25, "f_max_hand_N": 550, "f_max_foot_N": 1150 },
+    "pocket":    { "depth_m": 0.055, "cone_half_angle_deg": 45, "out_of_plane_tilt_deg": 15, "f_max_hand_N": 450, "f_max_foot_N": 900 },
+    "pinch":     { "depth_m": 0.04, "cone_half_angle_deg": 40, "out_of_plane_tilt_deg": 20, "f_max_hand_N": 400, "f_max_foot_N": 850 },
+    "sloper":    { "depth_m": 0.06, "cone_half_angle_deg": 30, "out_of_plane_tilt_deg": 15, "f_max_hand_N": 380, "f_max_foot_N": 800 },
+    "crimp":     { "depth_m": 0.025, "cone_half_angle_deg": 35, "out_of_plane_tilt_deg": 10, "f_max_hand_N": 420, "f_max_foot_N": 700 },
+    "jib":       { "depth_m": 0.02, "cone_half_angle_deg": 50, "out_of_plane_tilt_deg": 15, "f_max_hand_N": 150, "f_max_foot_N": 600 },
+    "uncategorized": { "depth_m": 0.05, "cone_half_angle_deg": 40, "out_of_plane_tilt_deg": 15, "f_max_hand_N": 400, "f_max_foot_N": 850 }
+  },
+  "scaling": {
+    "boxSize_median_px": 52.6,
+    "depth_size_factor": "depth_m * clamp(0.7 + 0.6 * boxSize / boxSize_median, 0.6, 1.6)",
+    "f_hand_difficulty_factor": "f_max_hand_N * (0.7 + 0.12 * handDifficulty)",
+    "f_foot_rating_factor": "f_max_foot_N * (0.75 + 0.09 * footRating)"
+  }
+}
